@@ -111,11 +111,17 @@ nodeSelector: {}
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 # Disable both when deploying with Istio 1.0 mTLS. https://istio.io/help/faq/security/#k8s-health-checks
 livenessProbe:
+  httpGet:
+    path: /ping
+    type: http
   enabled: true
   initialDelaySeconds: 0
   timeoutSeconds: 1
 
 readinessProbe:
+  httpGet:
+    path: /ping
+    port: http
   enabled: true
   initialDelaySeconds: 0
   timeoutSeconds: 1
